@@ -1,8 +1,6 @@
 # SCENT - Backend   
-***
-
-## 개요
 향수 아카이브 웹사이트의 백엔드 프로젝트입니다. 
+<br><br><br>
 
 
 ## 개발 환경 설정
@@ -16,11 +14,13 @@ npm install
    * SECRET
    * GOOGLE_CLIENT_ID
    * GOOGLE_CLIENT_SECRET
-   
+<br><br><br>
  
 [comment]: <> (## 기능)
 
 ## DB 설계
+![DB](https://raw.githubusercontent.com/boonboonscent/boonboonscent/ebb14c5dd453bd109ea0ed64bf131a7939825c45/Backend/db.svg)  
+<br><br><br>
 
 [comment]: <> (## API 명세)
 
