@@ -1,0 +1,7 @@
+node_modules
+insertData
+.env
+.idea
+
+localStrategy.js
+routes/perfume.js
