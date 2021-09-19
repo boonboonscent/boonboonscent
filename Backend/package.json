@@ -7,7 +7,7 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Han Jihye, Park Bokyung",
+  "author": "Han Jihye, Park Bokyung, Lim Ahyeon",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^10.0.0",
