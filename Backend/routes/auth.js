@@ -11,4 +11,14 @@ router.get('/google/callback', passport.authenticate('google', {
         res.status(200).json({success: true, user: req.user});
 });
 
+// 로그아웃
+router.get('/logout', (req, res) => {
+        if(req.user) {
+                req.session.destroy();
+                res.status(200).json({success: true})
+        } else {
+                res.status(400).json({success: false, message: "로그아웃 권한이 없습니다."})
+        }
+})
+
 module.exports = router;
