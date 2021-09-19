@@ -32,17 +32,18 @@ app.use(session({
     },
 }));
 app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 const perfumeRouter = require('./routes/perfume');
 const authRouter = require('./routes/auth');
 
-app.use('/perfume', perfumeRouter);
-app.use('/auth', authRouter);
+app.use('/api/perfume', perfumeRouter);
+app.use('/api/auth', authRouter);
 
 app.use((req, res) => {
-    if(req.session.passport) {
-        return res.send(`${req.session.passport.user.nickname} 님 환영합니다.`);
+    if(req.user) {
+        return res.send(`${req.user.nickname} 님 환영합니다.`);
     }
     return res.send('환영합니다.');
 })

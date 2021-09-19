@@ -2,6 +2,7 @@ node_modules
 insertData
 .env
 .idea
+Test
 
 localStrategy.js
 routes/perfume.js
