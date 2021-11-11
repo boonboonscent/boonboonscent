@@ -19,7 +19,7 @@ npm install
 [comment]: <> (## 기능)
 
 ## DB 설계
-![DB](https://raw.githubusercontent.com/boonboonscent/boonboonscent/ebb14c5dd453bd109ea0ed64bf131a7939825c45/Backend/db.svg)  
+![DB](https://raw.githubusercontent.com/boonboonscent/boonboonscent/d9ded15dadbc30deee8f6dfd868f58aec24b389f/Backend/db.svg)  
 <br><br><br>
 
 [comment]: <> (## API 명세)
