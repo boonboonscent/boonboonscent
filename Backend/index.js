@@ -38,18 +38,20 @@ app.use(passport.session());
 const perfumeRouter = require('./routes/perfume');
 const authRouter = require('./routes/auth');
 
-app.use('/api/perfume', perfumeRouter);
-app.use('/api/auth', authRouter);
+app.use('/perfume', perfumeRouter);
+app.use('/auth', authRouter);
 
 app.use((req, res) => {
+    // console.log(req.session);
     if(req.user) {
-        return res.send(`${req.user.nickname} 님 환영합니다.`);
+        // return res.send(`${req.user.nickname} 님 환영합니다.`);
+        return res.json(req.session);
     }
     return res.send('환영합니다.');
 })
 
 // Port
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 4000
 app.listen(port, () => {
     console.log(`Server Listening on ${port}`)
 });

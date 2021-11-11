@@ -9,7 +9,7 @@
 npm install
 ```
 2. .env 파일 추가 및 환경 변수 설정
-   * PORT=5000
+   * PORT=4000
    * MONGO_URI
    * SECRET
    * GOOGLE_CLIENT_ID
