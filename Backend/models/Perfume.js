@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const perfumeSchema = new Schema({
+    _id: Schema.Types.ObjectId,
+
     product: {
         type: String,
         required: true,
@@ -62,7 +64,17 @@ const perfumeSchema = new Schema({
     },
 
     weather_code: String,
-    weather_code_value: Number
+    weather_code_value: Number,
+
+    view_count: {
+        type: Number,
+        default: 0
+    },
+
+    like_count: {
+        type: Number,
+        default: 0
+    }
 
 });
 
