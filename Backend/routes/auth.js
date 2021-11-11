@@ -17,7 +17,7 @@ router.get('/logout', (req, res) => {
                 req.session.destroy();
                 res.status(200).json({success: true})
         } else {
-                res.status(400).json({success: false, message: "로그아웃 권한이 없습니다."})
+                res.status(401).json({success: false, message: "로그인이 필요합니다."})
         }
 })
 
