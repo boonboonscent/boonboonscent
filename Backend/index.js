@@ -38,10 +38,12 @@ app.use(passport.session());
 const perfumeRouter = require('./routes/perfume');
 const perfumeLikeRouter = require('./routes/perfume/like');
 const authRouter = require('./routes/auth');
+const userRouter = require('./routes/user');
 
 app.use('/perfume', perfumeRouter);
 app.use('/perfume/like', perfumeLikeRouter);
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
 app.use((req, res) => {
     if(req.user) {
