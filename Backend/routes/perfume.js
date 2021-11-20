@@ -127,11 +127,14 @@ router.post('/like', async (req, res) => {
         })
 })
 
-// 향수 상세 조회 API
+/**
+ * 향수 상세 조회 API
+ */
 router.get('/:id', async (req, res) => {
     const perfumeId = req.params.id;
     Perfume.findById(perfumeId).exec()
         .then((perfume) => {
+            let group = perfume.type ? perfume.type.split('-') : []; // 향조 배열
             res.status(200).json({
                 success: true,
                 data: {
@@ -142,6 +145,8 @@ router.get('/:id', async (req, res) => {
                     top_notes: perfume.top_notes,
                     middle_notes: perfume.middle_notes,
                     bottom_notes: perfume.bottom_notes,
+                    group: group,
+                    // description:
                 }
             });
         }).catch((err) => {
