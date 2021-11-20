@@ -42,10 +42,8 @@ app.use('/perfume', perfumeRouter);
 app.use('/auth', authRouter);
 
 app.use((req, res) => {
-    // console.log(req.session);
     if(req.user) {
-        // return res.send(`${req.user.nickname} 님 환영합니다.`);
-        return res.json(req.session);
+        return res.send(`${req.user.nickname} 님 환영합니다.`);
     }
     return res.send('환영합니다.');
 })
