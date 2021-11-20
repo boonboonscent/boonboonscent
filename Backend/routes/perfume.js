@@ -4,7 +4,12 @@ const Like = require('../models/Like');
 const mongoose = require("mongoose");
 const router = express.Router();
 
-// 전체 향수 조회 API
+/**
+ * 전체 향수 조회 API
+ *  1. 페이징
+ *  2. 정렬
+ *  3. 향조, 노트, 브랜드별 필터링
+ * */
 router.get('/', async (req, res) => {
 
     // 회원의 좋아요 목록 조회
@@ -20,8 +25,17 @@ router.get('/', async (req, res) => {
     const sort = req.query.sort === undefined ? '-view_count' : req.query.sort;
     let group = req.query.group;
     let notes = req.query.notes;
+    let house = req.query.house;
 
-    // 그룹 쿼리 - 추가해야함
+    // 향조 쿼리
+    if (group) {
+        group = group.split(',');
+        let groupRegex = '';
+        group.map(value => {
+            groupRegex += value + '.*';
+        });
+        query = query.find({'type': {$regex: groupRegex, $options: 'i'}});  // i: 대소문자 무시
+    }
 
     // 노트 쿼리
     if (notes) {
@@ -33,6 +47,11 @@ router.get('/', async (req, res) => {
             {'bottom_notes': {$all: notes}},
 
         ]);
+    }
+
+    // 브랜드 쿼리
+    if (house) {
+        query = query.find({'house': {$regex: house, $options: 'i'}});
     }
 
     // 정렬 및 페이징 쿼리
@@ -67,7 +86,7 @@ router.get('/', async (req, res) => {
                         product: perfume.product,
                         house: perfume.house,
                         image_name: perfume.image_name,
-                        liked: false
+                        liked: false,
                     }
                 });
                 return result;
@@ -75,6 +94,7 @@ router.get('/', async (req, res) => {
         }).then((result) => {
             return res.status(200).json({success: true, data: result});
         }).catch((err) => {
+            console.log(err);
             return res.status(400).json({success: false, message: '잘못된 요청입니다.'});
         });
 
@@ -112,6 +132,7 @@ router.get('/:id', async (req, res) => {
     const perfumeId = req.params.id;
     Perfume.findById(perfumeId).exec()
         .then((perfume) => {
+            let group = perfume.type ? perfume.type.split('-') : []; // 향조 배열
             res.status(200).json({
                 success: true,
                 data: {
@@ -121,8 +142,9 @@ router.get('/:id', async (req, res) => {
                     single_notes: perfume.single_notes,
                     top_notes: perfume.top_notes,
                     middle_notes: perfume.middle_notes,
-                    bottom_notes: perfume.bottom_notes
-                    // group, description 추가해야 함
+                    bottom_notes: perfume.bottom_notes,
+                    group: group,
+                    // description:
                 }
             });
         }).catch((err) => {
