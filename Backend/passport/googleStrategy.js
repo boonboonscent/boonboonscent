@@ -17,7 +17,7 @@ function google() {
                 if (user) {
                     done(null, user);
                 } else { // 회원가입
-                    const newUser = await User.create({sns_id: profile.id, provider: 'google', nickname: profile.displayName});
+                    const newUser = await User.create({sns_id: profile.id, provider: 'google', nickname: profile.displayName, image: null});
                     done(null, newUser);
                 }
             } catch (err) {
