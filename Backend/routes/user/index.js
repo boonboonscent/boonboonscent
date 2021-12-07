@@ -47,4 +47,32 @@ async function setUser(userId, nickname, image) {
         {new: true}).exec();
 }
 
+/**
+ * 닉네임 중복 검사 API
+ */
+router.get('/profile', async (req, res) => {
+    const nickname = req.query.nickname;
+    const user = await findUserByNickname(req.user_id, nickname);
+    if(user) {
+        res.json({
+            duplicated: true,
+            nickname: nickname,
+            message: '중복된 닉네임 입니다.'
+        })
+    } else {
+        res.json({
+            duplicated: false,
+            nickname: nickname,
+            message: '사용 가능한 닉네임 입니다.'
+        })
+    }
+})
+
+async function findUserByNickname(userId, nickname) {
+    const user = await User.findOne({nickname: nickname, _id: {$ne: userId}}).exec();
+    return user;
+}
+
+
+
 module.exports = router;
