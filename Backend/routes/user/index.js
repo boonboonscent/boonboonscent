@@ -3,6 +3,8 @@ const User = require('../../models/User');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const Like = require("../../models/Like");
+const Perfume = require("../../models/Perfume");
 
 /**
  * 사용자 프로필 수정 API
@@ -24,7 +26,7 @@ router.post('/profile', profileImage.single('profile_image'), async (req, res) =
             message: '로그인이 필요합니다.'
         });
     }
-    const userId = req.user._id;
+    const userId = req.user_id;
     const nickname = req.body.nickname;
 
     // 닉네임, 이미지이름 수정
@@ -73,6 +75,24 @@ async function findUserByNickname(userId, nickname) {
     return user;
 }
 
+/**
+ * 좋아요한 향수 조회 API
+ */
+router.get('/like', async (req, res) => {
+    const userId = req.user._id;
+    const likeList = await Like.find({user_id: userId}, 'perfume_id')
+        .populate('perfume_id', 'product house image_name');
+    const likedPerfumeList = likeList.map((like) => {
+            return {
+                product: like.perfume_id.product,
+                house: like.perfume_id.house,
+                image_name: like.perfume_id.image_name
+            }
+        })
 
+    return res.json({
+        data: likedPerfumeList
+    });
+})
 
 module.exports = router;
