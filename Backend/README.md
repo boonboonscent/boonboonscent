@@ -52,5 +52,5 @@ Simple, unobtrusive authentication for Node.js.
 * passport-google-oauth: [http://www.passportjs.org/docs/google/](http://www.passportjs.org/docs/google/)
 
 ### multer
-A node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
+A node.js middleware for handling multipart/form-data, which is primarily used for uploading files.  
 [https://github.com/expressjs/multer](https://github.com/expressjs/multer)
