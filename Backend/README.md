@@ -1,5 +1,5 @@
-# SCENT - Backend   
-향수 아카이브 웹사이트의 백엔드 프로젝트입니다. 
+# SCENT - Backend
+향수 아카이브 웹사이트의 백엔드 프로젝트입니다.
 <br><br><br>
 
 
@@ -14,8 +14,8 @@ npm install
    * SECRET
    * GOOGLE_CLIENT_ID
    * GOOGLE_CLIENT_SECRET
-<br><br><br>
- 
+     <br><br><br>
+
 [comment]: <> (## 기능)
 
 ## DB 설계
@@ -24,6 +24,9 @@ npm install
 
 [comment]: <> (## API 명세)
 
+## API 명세서
+https://documenter.getpostman.com/view/16892519/UUxtEAh8
+<br><br><br>
 
 ## Dependencies
 ### express
@@ -48,9 +51,9 @@ Loads environment variables from .env file.
 
 ### passport
 Simple, unobtrusive authentication for Node.js.   
-[https://github.com/jaredhanson/passport](https://github.com/jaredhanson/passport)   
+[https://github.com/jaredhanson/passport](https://github.com/jaredhanson/passport)
 * passport-google-oauth: [http://www.passportjs.org/docs/google/](http://www.passportjs.org/docs/google/)
 
 ### multer
-A node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
+A node.js middleware for handling multipart/form-data, which is primarily used for uploading files.  
 [https://github.com/expressjs/multer](https://github.com/expressjs/multer)
