@@ -31,6 +31,41 @@ router.get('/weather', function(req, res, next) {
       const time = $(this).find('fcstTime').text();
       const weather = $(this).find('category').text();
       const wea_val = $(this).find('fcstValue').text();
+
+
+      createComment = (json) => {
+        try {
+            let data = json.response.body.items.item;
+            console.log("\ncreateComment: ", data.length);
+            let info = {}
+            for (let i = 0; i < data.length; i++) {
+                let item = data[i];
+                switch (item.category) {
+                    case "SKY":
+                        let cloudy = parseInt(item.fcstValue);
+                        if (cloudy > 8) {
+                            info.sky = '흐림';
+                        } else if (cloudy > 5) {
+                            info.sky = '구름많음';
+                        } else {
+                            info.sky = '맑음';
+                        }
+                        break;
+                    case "TMN":
+                        info.morning = item.fcstValue;
+                        break;
+                    case "TMX":
+                        info.highest = item.fcstValue;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+            let r = this.address + " 오늘 날씨는 " + info.sky
+            return r;
+    
+
       
       // 출력
       console.log(`시간 : ${time} 날씨 정보 : ${weather} 값 : ${wea_val}`);
