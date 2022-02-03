@@ -5,4 +5,6 @@ insertData
 Test
 
 localStrategy.js
-routes/perfume.js
+public
+
+.DS_Store
