@@ -10,9 +10,12 @@
   "author": "Han Jihye, Park Bokyung, Lim Ahyeon",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.25.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.34",
     "mongoose": "^6.0.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
