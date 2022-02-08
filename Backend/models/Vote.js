@@ -13,12 +13,8 @@ const voteSchema = new Schema({
         required: true
     },
     weather: {
-        type: Number,
-
-        // 1맑음, 2구름조금, 3구름많음, 4흐림, 5비, 6눈
-        max: 6,
-        min: 1,
-
+        type: String,
+        enum: ['맑음', '흐림', '비', '눈'],
         required: true
     },
     temperature: {

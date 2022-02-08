@@ -39,13 +39,15 @@ const perfumeRouter = require('./routes/perfume');
 const perfumeLikeRouter = require('./routes/perfume/like');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
-const weatherRouter = require('./routes/weather')
+const weatherRouter = require('./routes/weather');
+const voteRouter = require('./routes/vote');
 
 app.use('/perfume', perfumeRouter);
 app.use('/perfume/like', perfumeLikeRouter);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/weather', weatherRouter);
+app.use('/vote', voteRouter);
 
 app.use((req, res) => {
     if(req.user) {
