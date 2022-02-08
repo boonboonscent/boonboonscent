@@ -4,7 +4,7 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const Like = require("../../models/Like");
-const Perfume = require("../../models/Perfume");
+const Vote = require("../../models/Vote");
 
 /**
  * 사용자 프로필 수정 API
@@ -93,6 +93,38 @@ router.get('/like', async (req, res) => {
     return res.json({
         data: likedPerfumeList
     });
+})
+
+
+/**
+ * 투표한 향수 조회 API
+ */
+router.get('/vote', async (req, res) => {
+    try {
+        const userId = req.user._id;
+        const voteList = await Vote.find({user_id: userId}, ['perfume_id', 'weather', 'votedDate', 'temperature'])
+            .populate('perfume_id', 'product house image_name');
+        const data = voteList.map((vote) => {
+            return {
+                date: vote.votedDate,
+                weather: vote.weather,
+                temperature: vote.temperature,
+                product: vote.perfume_id.product,
+                house: vote.perfume_id.house,
+                image_name: vote.perfume_id.image_name
+            }
+        })
+
+        return res.status(200).json({
+            success: true,
+            data: data
+        });
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            message: err.message
+        });
+    }
 })
 
 module.exports = router;
