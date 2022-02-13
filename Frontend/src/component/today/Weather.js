@@ -49,22 +49,22 @@ class Weather extends PureComponent {
 
     render() {
         return (
-            <div className='container'>
+            <div className='weather-container'>
                 {this.state.loading ?
-                    <div className='text'>로딩 중..</div>
+                    <div className='weather-text'>로딩 중..</div>
                     :
                     <>
-                        <div className='item'>
+                        <div className='weather-item'>
                             <img src='./icons/calendar.svg' height={19} alt='calendar'/>
-                            <div className='text'>{this.state.date}</div>
+                            <div className='weather-text'>{this.state.date}</div>
                         </div>
-                        <div className='item'>
+                        <div className='weather-item'>
                             <img src='./icons/location.svg' height={38} alt='location'/>
-                            <div className='text'>서울</div>
+                            <div className='weather-text'>서울</div>
                         </div>
-                        <div className='item'>
+                        <div className='weather-item'>
                             <img src={this.state.weather} height={19} alt='weather'/>
-                            <div className='text'>{this.state.temperature} &deg;C</div>
+                            <div className='weather-text'>{this.state.temperature} &deg;C</div>
                         </div>
                     </>
                 }

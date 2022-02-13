@@ -1,4 +1,4 @@
-.container {
+.weather-container {
     background: #FFFFFF;
     border-radius: 19px;
     width: 237px;
@@ -8,16 +8,16 @@
     align-items: center;
     margin-bottom: 24px;
 }
-.item {
+.weather-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.item img {
+.weather-item img {
     width: 38px;
     border: none;
 }
-.text {
+.weather-text {
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
