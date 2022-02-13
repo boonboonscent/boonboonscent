@@ -1,0 +1,28 @@
+.container {
+    background: #FFFFFF;
+    border-radius: 19px;
+    width: 237px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.item img {
+    width: 38px;
+    border: none;
+}
+.text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #777882;
+}

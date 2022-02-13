@@ -5,10 +5,11 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const passportConfigure = require('./passport/index');
+const cors = require('cors');
 
 dotenv.config();
 const app = express();
-
+app.use(cors({origin: 'http://localhost:4000'}));
 passportConfigure();
 
 // MongoDB connect

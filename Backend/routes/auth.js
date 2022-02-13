@@ -11,6 +11,11 @@ router.get('/google/callback', passport.authenticate('google', {
         res.status(200).json({success: true, user: req.user});
 });
 
+// 로컬 로그인
+
+
+// 회원가입
+
 // 로그아웃
 router.get('/logout', (req, res) => {
         if(req.user) {

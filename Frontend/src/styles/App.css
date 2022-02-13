@@ -1,0 +1,35 @@
+/* font */
+@font-face {
+  font-family: Noto Sans KR;
+  src: url('../../public/fonts/Noto_Sans_KR/NotoSansKR-Regular.otf');
+  font-weight: 400;
+}
+@font-face {
+  font-family: Noto Sans KR;
+  src: url('../../public/fonts/Noto_Sans_KR/NotoSansKR-Medium.otf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: Noto Sans KR;
+  src: url('../../public/fonts/Noto_Sans_KR/NotoSansKR-Bold.otf');
+  font-weight: 700;
+}
+
+
+.header {
+  height: 40px;
+  padding: 24px;
+}
+
+.body {
+  background: rgba(205, 205, 205, 0.5);
+  padding: 44px 16px;
+  min-height: calc(100vh - 206px); /* 150px = header 88px + navbar 30px + padding 88px */
+}
+
+.today-perfume-text {
+  font-family: Noto Sans KR;
+  font-weight: 500;
+  font-size: 22px;
+  margin-bottom: 32px;
+}
