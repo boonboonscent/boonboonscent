@@ -43,12 +43,12 @@ const userRouter = require('./routes/user');
 const weatherRouter = require('./routes/weather');
 const voteRouter = require('./routes/vote');
 
-app.use('/perfume', perfumeRouter);
-app.use('/perfume/like', perfumeLikeRouter);
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
-app.use('/weather', weatherRouter);
-app.use('/vote', voteRouter);
+app.use('/api/perfume', perfumeRouter);
+app.use('/api/perfume/like', perfumeLikeRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
+app.use('/api/weather', weatherRouter);
+app.use('/api/vote', voteRouter);
 
 app.use((req, res) => {
     if(req.user) {

@@ -76,7 +76,7 @@ function getWeather() {
     const dataType = 'JSON';
     moment.tz.setDefault("Asia/Seoul");
     const date = moment().format('YYYYMMDD');
-    const base_time = '1100';
+    const base_time = '0500';
     const nx = '59';
     const ny = '125';
 
