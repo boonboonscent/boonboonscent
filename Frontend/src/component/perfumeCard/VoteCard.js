@@ -18,7 +18,6 @@ class VoteCard extends PureComponent {
                     <div className='vote-card-house'>{this.state.house}</div>
                     <div>투표 현황</div>
                 </div>
-
             </div>
         )
     }
