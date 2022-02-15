@@ -1,5 +1,6 @@
 const express = require('express');
 const Vote = require('../../models/Vote');
+const moment = require("moment");
 const router = express.Router();
 
 /**
@@ -12,8 +13,8 @@ router.post('/', async (req, res) => {
             message: '로그인이 필요합니다.'
         });
     }
-
     const userId = req.user._id;
+    console.log(req.body);
     const perfumeId = req.body.perfume_id;
     const weather = req.body.weather;
     const temperature = req.body.temperature;
@@ -28,6 +29,44 @@ router.post('/', async (req, res) => {
         return res.status(200).json({success: true});
     } catch (err) {
         return res.status(400).json({success: false, message: err.message});
+    }
+})
+
+
+/**
+ * 투표 여부 확인 API
+ */
+router.get('/', async (req, res) => {
+    if(!req.user) {
+        return res.status(401).json({
+            success: false,
+            message: '로그인이 필요합니다.'
+        });
+    }
+    const userId = req.user._id;
+    moment.tz.setDefault("Asia/Seoul");
+    const today = new Date(moment().format('YYYY-MM-DD'));
+
+    try{
+        const vote = await Vote.findOne({userId: userId, votedDate: today});
+        if(vote) {
+            return res.status(200).json({
+                success: true,
+                voted: true,
+                perfume: vote.perfume_id
+            });
+        } else {
+            return res.status(200).json({
+                success: true,
+                voted: false,
+                perfume: null
+            });
+        }
+    } catch (err) {
+        return res.status(400).json({
+            success: false,
+            message: err.message
+        });
     }
 })
 
