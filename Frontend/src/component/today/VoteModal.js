@@ -13,21 +13,24 @@ class VoteModal extends Component {
                            height: 218,
                            left: 16,
                            top: 309,
-                           padding: 0
-                       }
+                           padding: 0,
+                           borderRadius: 8
+                   }
                    }}
             >
                 <div>
                     <div className='vote-modal-text'>
-                        한번 선택한 투표는 바꾸지 못해요.<br/>
-                        이 향수로 투표할까요?
+                        <div>
+                            한번 선택한 투표는 바꾸지 못해요.<br/>
+                            이 향수로 투표할까요?
+                        </div>
                     </div>
                     <div className='vote-modal-button'>
                         <div className='vote-modal-cancel-button' onClick={this.props.onClickCancel}>
-                            다른 향수로 바꿀래요
+                            <div>다른 향수로 바꿀래요</div>
                         </div>
                         <div className='vote-modal-accept-button' onClick={this.props.onClickAccept}>
-                            좋아요!
+                            <div>좋아요!</div>
                         </div>
                     </div>
                 </div>
