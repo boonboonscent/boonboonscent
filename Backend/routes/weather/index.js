@@ -12,7 +12,6 @@ const {getTodayPerfume} = require("./getTodayPerfume");
 router.get('/', async function(req, res) {
     try {
         const weatherInfo = await getWeather();
-        console.log(weatherInfo);
         if (weatherInfo.success) {
             return res.status(200).json(weatherInfo);
         } else {
@@ -46,7 +45,6 @@ async function getWeather() {
 
     try{
         const result = await axios({method: 'GET', url: url});
-        console.log(url);
         const items = result.data.response.body.items.item;
         let sky, pty;       //하늘상태, 강수형태,
         let temperature;    //기온
@@ -98,8 +96,12 @@ async function getWeather() {
  * 오늘의 향수 조회 API
  */
 router.get('/perfumes', async (req, res) => {
-    const perfumeList = getTodayPerfume();
-    return res.status(200).json({perfumeList: perfumeList});
+    const result = await getTodayPerfume();
+    if(result.success) {
+        return res.status(200).json(result);
+    } else {
+        return res.status(400).json(result);
+    }
 })
 
 
