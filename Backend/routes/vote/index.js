@@ -1,6 +1,7 @@
 const express = require('express');
 const Vote = require('../../models/Vote');
-const moment = require("moment");
+const {getTodayDate} = require("../getTodayDate");
+const {getTodayPerfume} = require("../weather/getTodayPerfume");
 const router = express.Router();
 
 /**
@@ -32,6 +33,15 @@ router.post('/', async (req, res) => {
     }
 })
 
+function votePerfume(userId, perfumeId, weather, temperature, date) {
+    return Vote.create({
+        user_id: userId,
+        perfume_id: perfumeId,
+        weather: weather,
+        temperature: temperature,
+        votedDate: new Date(date)
+    })
+}
 
 /**
  * 투표 여부 확인 API
@@ -44,8 +54,7 @@ router.get('/', async (req, res) => {
         });
     }
     const userId = req.user._id;
-    moment.tz.setDefault("Asia/Seoul");
-    const today = new Date(moment().format('YYYY-MM-DD'));
+    const today = getTodayDate();
 
     try{
         const vote = await Vote.findOne({userId: userId, votedDate: today});
@@ -70,15 +79,39 @@ router.get('/', async (req, res) => {
     }
 })
 
-function votePerfume(userId, perfumeId, weather, temperature, date) {
-    return Vote.create({
-        user_id: userId,
-        perfume_id: perfumeId,
-        weather: weather,
-        temperature: temperature,
-        votedDate: new Date(date)
-    })
-}
+/**
+ * 투표율 조회 API
+ */
+router.get('/turnout', async (req, res) => {
+    try {
+        const count = {};
+        const perfumeList = getTodayPerfume();
+        perfumeList.map(v => {
+            const id = v.id;
+            count[id] = 0;
+        });
 
+        const todayVotes = await Vote.find({votedDate: new Date(getTodayDate().format('YYYY-MM-DD'))}).exec();
+        const total = todayVotes.length;
+        todayVotes.map((v) => {
+            const perfumeId = v.perfume_id;
+            count[perfumeId]++;
+        })
+
+        return res.status(200).json({
+            success: true,
+            turnout: [
+                {id: perfumeList[0].id, value: count[perfumeList[0].id]*100/total},
+                {id: perfumeList[1].id, value: count[perfumeList[1].id]*100/total},
+                {id: perfumeList[2].id, value: count[perfumeList[2].id]*100/total}
+            ]
+        });
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            message: err.message
+        })
+    }
+})
 
 module.exports = router;
