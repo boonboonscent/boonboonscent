@@ -19,6 +19,9 @@
 .header {
   height: 40px;
   padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .body {

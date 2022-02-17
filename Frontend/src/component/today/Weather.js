@@ -2,7 +2,7 @@ import '../../styles/Weather.css';
 import {useState, useEffect} from "react";
 import axios from "axios";
 
-function Weather() {
+function Weather(props) {
     const weatherType = {'맑음':'sun', '흐림': 'cloud', '비': 'rain', '눈': 'snow'};
     const [date, setDate] = useState(null);
     const [weather, setWeather] = useState(null);
@@ -13,13 +13,13 @@ function Weather() {
     const getWeather = async (today) => {
         axios.get('/api/weather')
             .then((response) => {
-                console.log(response.data);
                 if(response.data.success === true) {
                     const data = response.data.data;
                     setLoading(false);
                     setDate(today);
                     setWeather(`./icons/${weatherType[data.weather]}-grey.svg`);
                     setTemperature(data.temperature);
+                    props.passWeather(response.data.data);
                 } else {
                     setLoading(true);
                     setDate(today);
@@ -60,7 +60,6 @@ function Weather() {
                     </div>
                 </>
             }
-
         </div>
     );
 }

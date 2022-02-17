@@ -5,6 +5,18 @@ import Weather from "../component/today/Weather";
 import Vote from "../component/today/Vote";
 
 class TodayPerfume extends Component {
+    state = {
+        date: null,
+        weather: null,
+        temperature: null
+    }
+
+    passWeather = (weatherInfo) => {
+        this.setState({
+            ...weatherInfo
+        });
+    }
+
     render() {
         return (
             <>
@@ -16,8 +28,12 @@ class TodayPerfume extends Component {
                         부슬부슬 가을비 내리는 날 <br/>
                         분분님의 향수를 투표해주세요.
                     </div>
-                    <Weather />
-                    <Vote />
+                    <Weather passWeather={this.passWeather}/>
+                    <Vote
+                        date={this.state.date}
+                        weather={this.state.weather}
+                        temperature={this.state.temperature}
+                    />
                 </div>
             </>
         );
