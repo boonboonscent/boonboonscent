@@ -15,7 +15,6 @@ router.post('/', async (req, res) => {
         });
     }
     const userId = req.user._id;
-    console.log(req.body);
     const perfumeId = req.body.perfume_id;
     const weather = req.body.weather;
     const temperature = req.body.temperature;
@@ -54,7 +53,7 @@ router.get('/', async (req, res) => {
         });
     }
     const userId = req.user._id;
-    const today = getTodayDate();
+    const today = new Date(getTodayDate().format('YYYY-MM-DD'));
 
     try{
         const vote = await Vote.findOne({userId: userId, votedDate: today});
