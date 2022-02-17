@@ -78,39 +78,4 @@ router.get('/', async (req, res) => {
     }
 })
 
-/**
- * 투표율 조회 API
- */
-router.get('/turnout', async (req, res) => {
-    try {
-        const count = {};
-        const perfumeList = getTodayPerfume();
-        perfumeList.map(v => {
-            const id = v.id;
-            count[id] = 0;
-        });
-
-        const todayVotes = await Vote.find({votedDate: new Date(getTodayDate().format('YYYY-MM-DD'))}).exec();
-        const total = todayVotes.length;
-        todayVotes.map((v) => {
-            const perfumeId = v.perfume_id;
-            count[perfumeId]++;
-        })
-
-        return res.status(200).json({
-            success: true,
-            turnout: [
-                {id: perfumeList[0].id, value: count[perfumeList[0].id]*100/total},
-                {id: perfumeList[1].id, value: count[perfumeList[1].id]*100/total},
-                {id: perfumeList[2].id, value: count[perfumeList[2].id]*100/total}
-            ]
-        });
-    } catch (err) {
-        res.status(400).json({
-            success: false,
-            message: err.message
-        })
-    }
-})
-
 module.exports = router;
