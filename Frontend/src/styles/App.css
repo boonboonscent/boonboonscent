@@ -36,3 +36,7 @@
   font-size: 22px;
   margin-bottom: 32px;
 }
+
+.button {
+  cursor: pointer;
+}

@@ -94,11 +94,10 @@ function Vote(props) {
                                 name="perfume"
                                 type="radio"
                                 checked={votedPerfume === perfume.id}
-                                defaultChecked={false}
                                 onChange={voted ? null : onChangeInput}
                             />
                             <label htmlFor={perfume.id}>
-                                <img
+                                <img className='button'
                                     width={48} height={48}
                                     src={votedPerfume === perfume.id ?
                                         './icons/selected.svg' : './icons/unSelected.svg'}/>
@@ -109,7 +108,7 @@ function Vote(props) {
                 }
             </div>
 
-            <div className={voted ? 'vote-button-inactive' : 'vote-button-active'}
+            <div className={voted ? 'vote-button-inactive' : 'button vote-button-active'}
                  onClick={voted ? null : onClickVoteButton}>
                 향수 투표하기
             </div>

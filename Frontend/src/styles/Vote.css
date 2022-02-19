@@ -60,7 +60,7 @@
 }
 .bar-chart {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     width: 113px;
     height: 8px;
     background: rgba(205, 205, 205, 0.5);
