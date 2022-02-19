@@ -1,7 +1,6 @@
 const express = require('express');
 const Vote = require('../../models/Vote');
 const {getTodayDate} = require("../getTodayDate");
-const {getTodayPerfume} = require("../weather/getTodayPerfume");
 const router = express.Router();
 
 /**
@@ -56,7 +55,8 @@ router.get('/', async (req, res) => {
     const today = new Date(getTodayDate().format('YYYY-MM-DD'));
 
     try{
-        const vote = await Vote.findOne({userId: userId, votedDate: today});
+        const vote = await Vote.findOne({user_id: userId, votedDate: today});
+
         if(vote) {
             return res.status(200).json({
                 success: true,
