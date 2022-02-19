@@ -23,12 +23,16 @@ async function getTodayPerfume() {
             count[perfumeId]++;
         })
 
+        const turnout = [count[perfumeList[0].id] * 100 / total,
+                        count[perfumeList[1].id] * 100 / total,
+                        count[perfumeList[2].id] * 100 / total];
+
         return {
             success: true,
             perfumeList: [
-                {...perfumeList[0], turnout: count[perfumeList[0].id] * 100 / total},
-                {...perfumeList[1], turnout: count[perfumeList[1].id] * 100 / total},
-                {...perfumeList[2], turnout: count[perfumeList[2].id] * 100 / total}
+                {...perfumeList[0], turnout: turnout[0].toFixed(2)},
+                {...perfumeList[1], turnout: turnout[1].toFixed(2)},
+                {...perfumeList[2], turnout: turnout[2].toFixed(2)}
             ]
         };
     } catch (err) {
