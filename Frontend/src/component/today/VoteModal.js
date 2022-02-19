@@ -9,13 +9,13 @@ class VoteModal extends Component {
                    style={{
                        content: {
                            position: 'absolute',
-                           width: 343,
+                           width: 342,
                            height: 218,
-                           left: 16,
-                           top: 309,
+                           left: 'calc(50% - 171px)',
+                           margin: 'auto',
                            padding: 0,
                            borderRadius: 8
-                   }
+                       }
                    }}
             >
                 <div>
@@ -26,10 +26,10 @@ class VoteModal extends Component {
                         </div>
                     </div>
                     <div className='vote-modal-button'>
-                        <div className='vote-modal-cancel-button' onClick={this.props.onClickCancel}>
+                        <div className='button vote-modal-cancel-button' onClick={this.props.onClickCancel}>
                             <div>다른 향수로 바꿀래요</div>
                         </div>
-                        <div className='vote-modal-accept-button' onClick={this.props.onClickAccept}>
+                        <div className='button vote-modal-accept-button' onClick={this.props.onClickAccept}>
                             <div>좋아요!</div>
                         </div>
                     </div>

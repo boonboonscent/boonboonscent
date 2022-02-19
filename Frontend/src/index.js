@@ -4,6 +4,7 @@ import './styles/index.css';
 import App from './component/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
+import Modal from "react-modal";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -11,6 +12,8 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('root')
 );
+
+Modal.setAppElement('#root')
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
