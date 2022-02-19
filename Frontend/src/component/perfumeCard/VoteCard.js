@@ -9,6 +9,19 @@ class VoteCard extends Component {
         voted: this.props.voted
     };
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.voted !== prevProps.voted) {
+            this.setState({
+                voted: this.props.voted,
+            })
+        }
+        if(this.props.perfume.turnout !== prevProps.perfume.turnout) {
+            this.setState({
+                turnout: this.props.perfume.turnout
+            })
+        }
+    }
+
     render() {
         // console.log(this.state);
         return (

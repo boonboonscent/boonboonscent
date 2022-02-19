@@ -74,6 +74,7 @@ function Vote(props) {
         }).then(response => {
             if(response.data.success) {
                 setVoted(true);
+                getTodayPerfumes();
             }
         }).catch(err => {
             console.log(err);
@@ -95,10 +96,11 @@ function Vote(props) {
                                 type="radio"
                                 checked={votedPerfume === perfume.id}
                                 onChange={voted ? null : onChangeInput}
+                                readOnly={voted ? true : false}
                             />
                             <label htmlFor={perfume.id}>
                                 <img className='button'
-                                    width={48} height={48}
+                                    width={48} height={48} alt='라디오 버튼'
                                     src={votedPerfume === perfume.id ?
                                         './icons/selected.svg' : './icons/unSelected.svg'}/>
                             </label>
