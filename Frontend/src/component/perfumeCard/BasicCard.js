@@ -5,7 +5,7 @@ class BasicCard extends PureComponent {
     state = {
         product: this.props.perfume.product,
         house: this.props.perfume.house,
-        imageName: `./images/perfumes/${this.props.perfume.imageName}`
+        imageName: `./images/perfumes/${this.props.perfume.image_name}`
     };
 
     render() {
