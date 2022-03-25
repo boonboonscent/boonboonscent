@@ -12,7 +12,7 @@ class BasicCard extends PureComponent {
     };
 
     render() {
-        console.log(this.state);
+        
         return (
             <div className='basic-card-container'>
                 <LikeButton/>

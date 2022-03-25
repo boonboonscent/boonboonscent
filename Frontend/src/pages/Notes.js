@@ -6,7 +6,7 @@ import {group} from "../component/note/data/Note";
 
 class Notes extends Component {
     render() {
-        console.log(group);
+        
         return(
             <>
                 <Header />

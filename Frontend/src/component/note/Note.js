@@ -1,23 +1,59 @@
+import {useEffect,useState} from "react";
+import axios from "axios";
 import {Component} from "react";
 import BasicCard from "../perfumeCard/BasicCard";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css"
 
-class Note extends Component {
 
-    render() {
-        const {noteInfo} = this.props;
-        return(
-            <>
-                <div>{noteInfo.note}</div>
-                <div>{noteInfo.explain}</div>
-                <div>
-                    <BasicCard perfume={{
-                        product: '향수 이름',
-                        house: '브랜드 이름',
-                        imageName: '5th_Avenue_Nights_Elizabeth_Arden.jpeg'}} />
-                </div>
-            </>
-        )
+
+const Note = (props) => {
+    const [loading, setLoading] = useState(true);
+    const [perfume,setPerfume] = useState([]);
+    useEffect(() => { getPerfumes();
+    }, []);
+    
+    const settings = 
+    {
+         dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1
+
+    };
+
+    const getPerfumes = ()=>{
+        axios.get(`/api/perfume?group=${props.noteInfo.group}&limit=5`)
+            .then (response=>{
+                if(response.data.success){
+                    setLoading(false);
+                    setPerfume(response.data.data);
+                   
+                }else{
+                    setLoading(true);
+                    setPerfume([]);
+              
+                }
+            }).catch(err=>{
+                setLoading(true);
+                setPerfume([]);
+            })
     }
+
+
+    return(
+        <>
+                <div>{props.noteInfo.note}</div>
+                <div>{props.noteInfo.explain}</div>
+    
+                <div>
+                    <Slider{...settings}>{perfume.map(item => <BasicCard perfume ={item}/> )}</Slider>
+                </div>
+
+            </>
+    )
 }
 
 export default Note;
